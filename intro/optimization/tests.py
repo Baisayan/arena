@@ -541,7 +541,7 @@ def _sample_from_sweep_config(config):
 
 
 def test_update_args(update_args, sweep_config):
-    from part3_optimization.solutions import WandbResNetFinetuningArgs
+    from optimization.solutions import WandbResNetFinetuningArgs
 
     args = WandbResNetFinetuningArgs(batch_size=1, epochs=10, learning_rate=1.0, weight_decay=1.0)
     args_dict = deepcopy(args.__dict__)

@@ -23,19 +23,19 @@ from torchvision import datasets, transforms
 from tqdm import tqdm
 
 # Make sure exercises are in the path
-chapter = "chapter0_fundamentals"
-section = "part3_optimization"
+chapter = "intro"
+section = "optimization"
 root_dir = next(p for p in Path.cwd().parents if (p / chapter).exists())
-exercises_dir = root_dir / chapter / "exercises"
-section_dir = exercises_dir / section
-if str(exercises_dir) not in sys.path:
-    sys.path.append(str(exercises_dir))
+main_dir = root_dir / chapter
+section_dir = main_dir / section
+if str(main_dir) not in sys.path:
+    sys.path.append(str(main_dir))
 
 MAIN = __name__ == "__main__"
 
-import part3_optimization.tests as tests
-from part2_cnns.solutions import Linear, ResNet34, get_resnet_for_feature_extraction
-from part3_optimization.utils import plot_fn, plot_fn_with_points
+import optimization.tests as tests
+from cnns.solutions import Linear, ResNet34, get_resnet_for_feature_extraction
+from optimization.utils import plot_fn, plot_fn_with_points
 from plotly_utils import bar, imshow, line
 
 device = t.device("mps" if t.backends.mps.is_available() else "cuda" if t.cuda.is_available() else "cpu")
@@ -465,8 +465,8 @@ if MAIN:
 
 def get_cifar() -> tuple[datasets.CIFAR10, datasets.CIFAR10]:
     """Returns CIFAR-10 train and test sets."""
-    cifar_trainset = datasets.CIFAR10(exercises_dir / "data", train=True, download=True, transform=IMAGENET_TRANSFORM)
-    cifar_testset = datasets.CIFAR10(exercises_dir / "data", train=False, download=True, transform=IMAGENET_TRANSFORM)
+    cifar_trainset = datasets.CIFAR10(main_dir / "data", train=True, download=True, transform=IMAGENET_TRANSFORM)
+    cifar_testset = datasets.CIFAR10(main_dir / "data", train=False, download=True, transform=IMAGENET_TRANSFORM)
     return cifar_trainset, cifar_testset
 
 

@@ -15,6 +15,7 @@ dependencies = [
     "pandas>=3.0.5",
     "plotly>=6.9.0",
     "rich>=15.0.0",
+    "scikit-learn>=1.9.0",
     "torch>=2.13.0",
     "torchaudio>=2.11.0",
     "torchinfo>=1.8.0",
