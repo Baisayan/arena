@@ -11,12 +11,10 @@ from tqdm import tqdm
 
 Arr = np.ndarray
 
-# Make sure exercises are in the path
-chapter = "chapter0_fundamentals"
-section = "part4_backprop"
+chapter = "intro"
+section = "backprop"
 root_dir = next(p for p in Path.cwd().parents if (p / chapter).exists())
-exercises_dir = root_dir / chapter / "exercises"
-
+main_dir = root_dir / chapter
 
 def visualize(dataloader, filename: str | None = None):
     (sample, sample_labels) = next(iter(dataloader))
@@ -43,8 +41,8 @@ def visualize(dataloader, filename: str | None = None):
 
 def get_mnist(subsample: int | None = None) -> tuple[DataLoader, DataLoader]:
     """Return MNIST data using the provided Tensor class."""
-    mnist_train = datasets.MNIST(f"{exercises_dir}/data", train=True, download=True)
-    mnist_test = datasets.MNIST(f"{exercises_dir}/data", train=False)
+    mnist_train = datasets.MNIST(f"{main_dir}/data", train=True, download=True)
+    mnist_test = datasets.MNIST(f"{main_dir}/data", train=False)
     if subsample is None:
         subsample = 1
     print("Preprocessing data...")
