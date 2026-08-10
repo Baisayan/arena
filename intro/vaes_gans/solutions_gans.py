@@ -19,25 +19,25 @@ from tqdm import tqdm
 # Modules from previous exercises (you can swap in your own implementations if you've completed them).
 
 # Make sure exercises are in the path
-chapter = "chapter0_fundamentals"
-section = "part5_vaes_and_gans"
+chapter = "intro"
+section = "vaes_gans"
 root_dir = next(p for p in Path.cwd().parents if (p / chapter).exists())
-exercises_dir = root_dir / chapter / "exercises"
-section_dir = exercises_dir / section
-if str(exercises_dir) not in sys.path:
-    sys.path.append(str(exercises_dir))
+main_dir = root_dir / chapter
+section_dir = main_dir / section
+if str(main_dir) not in sys.path:
+    sys.path.append(str(main_dir))
 
 MAIN = __name__ == "__main__"
 
-import part5_vaes_and_gans.tests as tests
-import part5_vaes_and_gans.utils as utils
+import vaes_gans.tests as tests
+import vaes_gans.utils as utils
 from plotly_utils import imshow
 
 device = t.device("mps" if t.backends.mps.is_available() else "cuda" if t.cuda.is_available() else "cpu")
 
 
-from part2_cnns.solutions import BatchNorm2d, Conv2d, Linear, ReLU, Sequential
-from part5_vaes_and_gans.solutions_vaes import get_dataset, display_data
+from cnns.solutions import BatchNorm2d, Conv2d, Linear, ReLU, Sequential
+from vaes_gans.solutions_vaes import get_dataset, display_data
 
 # %%
 
