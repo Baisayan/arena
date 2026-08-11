@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "circuitsvis>=1.43.3",
     "datasets>=5.0.1",
     "einops>=0.8.2",
     "ipython>=9.16.1",
@@ -22,6 +23,8 @@ dependencies = [
     "torchinfo>=1.8.0",
     "torchvision>=0.28.0",
     "tqdm>=4.70.0",
+    "transformer-lens>=3.7.0",
+    "transformers>=5.15.0",
     "wandb>=0.28.1",
 ]
 
