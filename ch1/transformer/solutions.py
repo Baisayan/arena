@@ -825,7 +825,7 @@ class TransformerSampler:
             t.manual_seed(seed)
             np.random.seed(seed)
         
-        input_ids = self.tokenizer.encode(prompt, return_tensors="pt").to(device)[0]
+        input_ids = self.tokenizer.encode(prompt, return_tensors="pt", add_special_tokens=False).to(device)[0]
 
         for _ in range(max_tokens_generated):
             # Get new logits (make sure we don't pass in more tokens than the model's context length)
@@ -974,7 +974,7 @@ if MAIN:
     tests.test_sample_basic(TransformerSampler.sample_basic)
     
     prompt = "John and Mary went to the"
-    input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
+    input_ids = tokenizer.encode(prompt, return_tensors="pt", add_special_tokens=False).to(device)
     logits = model(input_ids)[0, -1]
     
     expected_top_5 = {
@@ -1022,7 +1022,7 @@ if MAIN:
     tests.test_apply_frequency_penalty(TransformerSampler.apply_frequency_penalty)
     
     bieber_prompt = "And I was like Baby, baby, baby, oh Like, Baby, baby, baby, no Like, Baby, baby, baby, oh I thought you'd always be mine, mine"
-    input_ids = tokenizer.encode(bieber_prompt, return_tensors="pt")
+    input_ids = tokenizer.encode(bieber_prompt, return_tensors="pt", add_special_tokens=False).to(device)
     logits = t.ones(tokenizer.vocab_size)
     penalized_logits = TransformerSampler.apply_frequency_penalty(input_ids.squeeze(), logits, 2.0)
     
@@ -1062,7 +1062,7 @@ if MAIN:
     tests.test_sample_top_k(TransformerSampler.sample_top_k)
     
     prompt = "John and Mary went to the"
-    input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
+    input_ids = tokenizer.encode(prompt, return_tensors="pt", add_special_tokens=False).to(device)
     logits = model(input_ids)[0, -1]
     
     expected_top_5 = {
@@ -1104,7 +1104,7 @@ if MAIN:
     tests.test_sample_top_p(TransformerSampler.sample_top_p)
     
     prompt = "John and Mary went to the"
-    input_ids = tokenizer.encode(prompt, return_tensors="pt").to(device)
+    input_ids = tokenizer.encode(prompt, return_tensors="pt", add_special_tokens=False).to(device)
     logits = model(input_ids)[0, -1]
     
     expected_top_10pct = {
@@ -1271,7 +1271,7 @@ def beam_search(
     assert num_return_sequences <= num_beams
     self.model.eval()
 
-    tokens = self.tokenizer.encode(prompt, return_tensors="pt").to(device)
+    tokens = self.tokenizer.encode(prompt, return_tensors="pt", add_special_tokens=False).to(device)
 
     final_logprobs_and_completions = []  # we add to this list as we get terminated beams
     best_beams = Beams(self.model, self.tokenizer, t.tensor([0.0]).to(device), tokens)  # start with just 1 beam
@@ -1300,7 +1300,7 @@ TransformerSampler.beam_search = beam_search
 if MAIN:
     # Start with prompt "When I was", get top 3 tokens (and their logprobs), and use that to create & display the top 3 beams
     prompt = "When I was"
-    tokens = tokenizer.encode(prompt, return_tensors="pt").to(device)
+    tokens = tokenizer.encode(prompt, return_tensors="pt", add_special_tokens=False).to(device)
     logprobs = model(tokens)[0, -1].log_softmax(-1)
     top_logprobs, top_tokens = logprobs.topk(k=3, dim=-1)
     
@@ -1377,7 +1377,7 @@ if MAIN:
     sampler = TransformerSampler(model, tokenizer)
     
     prompt = "The ships hung in the sky in much the same way that"
-    orig_len = len(tokenizer.encode(prompt))
+    orig_len = len(tokenizer.encode(prompt, add_special_tokens=False))
     
     final_logitsums_and_completions = sampler.beam_search(
         prompt=prompt,
@@ -1389,7 +1389,7 @@ if MAIN:
     
     # Print all the best output
     for logprob_sum, text in final_logitsums_and_completions:
-        avg_logprob_as_prob = t.tensor(logprob_sum / (len(tokenizer.encode(text)) - orig_len)).exp()
+        avg_logprob_as_prob = t.tensor(logprob_sum / (len(tokenizer.encode(text, add_special_tokens=False)) - orig_len)).exp()
         rprint(f"Avg token prob = {avg_logprob_as_prob:.3f}\nBest output:\n[bold dark_orange]{text}")
 
 # %%
