@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "circuitsvis>=1.43.3",
     "datasets>=5.0.1",
+    "eindex-callum>=0.1.2",
     "einops>=0.8.2",
     "ipython>=9.16.1",
     "ipywidgets>=8.1.8",
