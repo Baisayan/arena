@@ -21,18 +21,18 @@ max_episode_steps = 1000
 N_RUNS = 200
 
 # Make sure exercises are in the path
-chapter = "chapter2_rl"
-section = "part1_intro_to_rl"
+chapter = "ch2"
+section = "rl_intro"
 root_dir = next(p for p in Path.cwd().parents if (p / chapter).exists())
-exercises_dir = root_dir / chapter / "exercises"
-section_dir = exercises_dir / section
-if str(exercises_dir) not in sys.path:
-    sys.path.append(str(exercises_dir))
+main_dir = root_dir / chapter
+section_dir = main_dir / section
+if str(main_dir) not in sys.path:
+    sys.path.append(str(main_dir))
 
-import part1_intro_to_rl.tests as tests
-import part1_intro_to_rl.utils as utils
+import tests
+import utils
 from plotly_utils import cliffwalk_imshow, imshow, line
-from part1_intro_to_rl.utils import GridWorld, Environment
+from utils import GridWorld, Environment
 
 MAIN = __name__ == "__main__"
 

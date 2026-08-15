@@ -9,6 +9,7 @@ dependencies = [
     "datasets>=5.0.1",
     "eindex-callum>=0.1.2",
     "einops>=0.8.2",
+    "gymnasium==0.29.0",
     "ipython>=9.16.1",
     "ipywidgets>=8.1.8",
     "jaxtyping>=0.3.11",

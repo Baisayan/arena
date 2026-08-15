@@ -199,6 +199,7 @@ dependencies = [
     { name = "datasets" },
     { name = "eindex-callum" },
     { name = "einops" },
+    { name = "gymnasium" },
     { name = "ipython" },
     { name = "ipywidgets" },
     { name = "jaxtyping" },
@@ -225,6 +226,7 @@ requires-dist = [
     { name = "datasets", specifier = ">=5.0.1" },
     { name = "eindex-callum", specifier = ">=0.1.2" },
     { name = "einops", specifier = ">=0.8.2" },
+    { name = "gymnasium", specifier = "==0.29.0" },
     { name = "ipython", specifier = ">=9.16.1" },
     { name = "ipywidgets", specifier = ">=8.1.8" },
     { name = "jaxtyping", specifier = ">=0.3.11" },
@@ -637,6 +639,15 @@ wheels = [
 ]
 
 [[package]]
+name = "cloudpickle"
+version = "3.1.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/27/fb/576f067976d320f5f0114a8d9fa1215425441bb35627b1993e5afd8111e5/cloudpickle-3.1.2.tar.gz", hash = "sha256:7fda9eb655c9c230dab534f1983763de5835249750e85fbcef43aaa30a9a2414", size = 22330, upload-time = "2025-11-03T09:25:26.604Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/88/39/799be3f2f0f38cc727ee3b4f1445fe6d5e4133064ec2e4115069418a5bb6/cloudpickle-3.1.2-py3-none-any.whl", hash = "sha256:9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a", size = 22228, upload-time = "2025-11-03T09:25:25.534Z" },
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -909,6 +920,15 @@ wheels = [
 ]
 
 [[package]]
+name = "farama-notifications"
+version = "0.0.6"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ec/91/14397890dde30adc4bee6462158933806207bc5dd10d7b4d09d5c33845cf/farama_notifications-0.0.6.tar.gz", hash = "sha256:b19acac4bb41d76e59e03394b5dd165f4761c86fa327f56307a35cbee3b60158", size = 2517, upload-time = "2026-04-24T08:43:57.603Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7c/f0/21f81892e4ed10f4ec3ef2e7cf8635fb76e7c0907c55d0da66be50094760/farama_notifications-0.0.6-py3-none-any.whl", hash = "sha256:f84839188efa1ce5bb361c2a84881b2dc2c0d0d7fb661ff00421820170930935", size = 2897, upload-time = "2026-04-24T08:43:56.785Z" },
+]
+
+[[package]]
 name = "fastjsonschema"
 version = "2.22.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1077,6 +1097,21 @@ wheels = [
 [package.optional-dependencies]
 http = [
     { name = "aiohttp" },
+]
+
+[[package]]
+name = "gymnasium"
+version = "0.29.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "cloudpickle" },
+    { name = "farama-notifications" },
+    { name = "numpy" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5a/40/77566cb53866adba5ab91f7d59e3d10c8d0cbab59ae0839b05f60c797b6c/gymnasium-0.29.0.tar.gz", hash = "sha256:f012a2001fbbcbf70d0a2bff311aa3173efd6e3131811ab30ae06d43d31e94af", size = 820118, upload-time = "2023-07-14T22:49:04.521Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3f/00/a728a4a8608213482fc38d76d842657d29b546f214e83801a044de074612/gymnasium-0.29.0-py3-none-any.whl", hash = "sha256:14a0e6ea9c4d34c0cd6e42e08c51e281834e9a83dc99b044427c9c6abf3b2a2b", size = 953762, upload-time = "2023-07-14T22:49:02.325Z" },
 ]
 
 [[package]]
